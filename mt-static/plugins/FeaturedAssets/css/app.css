@@ -1,0 +1,12 @@
+#asset-listing-table .status-publish img { 
+   background-image: none;
+}
+#asset-listing-table tr.selected td.featured.yes img { 
+   background-image: url(../images/star-listing-on.gif); 
+}
+#asset-listing-table td.featured.yes img { 
+   background-image: url(../images/star-listing.gif); 
+}
+#asset-listing-table td.featured img:hover { 
+   background-image: url(../images/star-listing.gif); 
+}

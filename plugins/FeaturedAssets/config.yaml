@@ -1,0 +1,41 @@
+name: Featured Assets
+id: FeaturedAssets
+key: FeaturedAssets
+author_link: http://www.majordojo.com/
+author_name: Byrne Reese
+description: This plugin provides a simple way of flagging certain assets as "featured." Once an asset is featured it is up to you to determine what and how you want to display it. Use cases include using featured assets to pick which images you want to surface in a slideshow on your front door.
+version: 0.9
+plugin_link: http://www.majordojo.com/projects/featured-assets.php
+schema_version: 2.997
+
+object_types:
+  asset:
+    is_featured: smallint meta
+
+applications:
+  cms:
+    methods:
+      toggle_featured_asset: $FeaturedAssets::FeaturedAssets::Plugin::toggle_featured
+
+tags:
+  block:        
+    AssetIsFeatured?: $FeaturedAssets::FeaturedAssets::Plugin::tag_is_asset_featured
+ 
+callbacks:
+  MT::App::CMS::template_source.asset_table: $FeaturedAssets::FeaturedAssets::Plugin::xfrm_featured_assets
+  MT::App::CMS::template_source.header: $FeaturedAssets::FeaturedAssets::Plugin::xfrm_header
+
+list_actions:
+    asset:
+        feature:
+            label: Toggle Featured
+            order: 100
+            code:  $FeaturedAssets::FeaturedAssets::Plugin::itemset_feature_asset
+            permission: edit_all_posts
+
+page_actions:
+    asset:
+        toggle_featured:
+            label: Toggle Featured
+            order: 100
+            code:  $FeaturedAssets::FeaturedAssets::Plugin::itemset_feature_asset
